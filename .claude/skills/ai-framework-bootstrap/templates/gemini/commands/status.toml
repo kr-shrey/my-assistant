@@ -1,0 +1,7 @@
+description = "Task dashboard. Usage: /status"
+prompt = """
+Do not delegate. Scan `docs/tasks/**/*.md`, read each file's frontmatter (status, priority,
+depends-on), and print a compact dashboard grouped by status. Within 'todo', surface tasks
+whose dependencies are all 'done', ordered by priority. Recommend the next task to pick up.
+This is read-only — never modify files or run git.
+"""

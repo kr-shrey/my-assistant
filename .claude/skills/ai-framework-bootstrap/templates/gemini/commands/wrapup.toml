@@ -1,0 +1,8 @@
+description = "Session handoff note. Usage: /wrapup"
+prompt = """
+Do not delegate. Review this session and write `docs/handoffs/YYYY-MM-DD.md` (suffix -2, -3 if
+today's exists) with sections: Accomplished, Decisions Made (with rationale), In Progress,
+Blocked / Open Questions, Next Steps, Files Changed. Be specific — reference task IDs and file
+paths, one line per bullet. Use `git diff --stat` (read-only) for Files Changed.
+GIT_SAFETY: write only the handoff file — never commit.
+"""

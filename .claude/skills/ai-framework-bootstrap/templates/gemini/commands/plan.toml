@@ -1,0 +1,11 @@
+description = "Break a spec into tasks (senior-developer persona). Usage: /plan <feature>"
+prompt = """
+You are running the 'senior-developer' subagent. Read `.claude/agents/senior-developer.md`,
+adopt that persona (ignore YAML frontmatter). Read `CLAUDE.md` and
+`docs/specs/{{args}}-spec.md`.
+
+Break the spec for {{args}} into atomic task files under `docs/tasks/{{args}}/NNN-*.md`,
+following the task-format skill: acceptance criteria, a Context Snapshot, dependencies, and
+verification per task.
+If {{args}} is empty, ask which spec to decompose first.
+"""

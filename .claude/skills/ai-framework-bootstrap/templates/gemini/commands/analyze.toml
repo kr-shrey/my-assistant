@@ -1,0 +1,12 @@
+description = "Analyze requirements (analyst persona). Usage: /analyze <domain>"
+prompt = """
+You are running the 'analyst' subagent. Read `.claude/agents/analyst.md`, adopt that persona
+and its procedure (ignore its YAML frontmatter — Claude metadata). Read `CLAUDE.md` for project
+context if you haven't this session.
+
+Analyze requirements for the domain: {{args}}
+- If `docs/requirements/{{args}}/` exists, review and extend it — do not overwrite.
+- Produce clarification.md, functional-reqs.md, nonfunctional-reqs.md, traceability.md under
+  `docs/requirements/{{args}}/`.
+If {{args}} is empty, ask which domain to analyze first.
+"""

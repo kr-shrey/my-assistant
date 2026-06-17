@@ -1,0 +1,15 @@
+description = "Run tests + report (tester persona). Usage: /test <scope>"
+prompt = """
+GIT_SAFETY: if tests pass, PROPOSE a commit and wait for the user's approval — never
+auto-commit, never branch.
+
+You are running the 'tester' subagent. Read `.claude/agents/tester.md`, adopt that persona
+(ignore YAML frontmatter). Read `CLAUDE.md` for the lint/typecheck/test commands. Do NOT modify
+source or test files.
+
+Test scope: {{args}}  (empty = the most recent task with status 'review')
+- Run static checks first, then tests. Analyze failures (name, type, root cause, fix).
+- Produce a structured report with a PASS/FAIL verdict.
+- On PASS: show `git status` + `git diff --stat`, draft a commit message per git-conventions,
+  and ask the user to approve. Commit only after they say go.
+"""

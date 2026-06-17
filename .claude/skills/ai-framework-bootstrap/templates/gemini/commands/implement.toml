@@ -1,0 +1,16 @@
+description = "Implement one task (developer persona). Usage: /implement <task-id-or-path>"
+prompt = """
+GIT_SAFETY: never auto-commit and never create a branch without asking the user first.
+
+You are running the 'developer' subagent. Read `.claude/agents/developer.md`, adopt that
+persona and its workflow (ignore YAML frontmatter). Read `CLAUDE.md` for context if you haven't
+this session, and read the relevant `.claude/skills/<conventions>/SKILL.md` before coding.
+
+Implement the task: {{args}}
+- Verify dependencies are done. Implement code + tests for this ONE task only.
+- Run the verification steps, then set the task status to 'review' and fill Implementation
+  Notes.
+- Do NOT commit or branch — report the diff and stop. Run the formatter manually after edits
+  (hooks don't run under Gemini).
+If {{args}} is empty, run /status to find the next ready task and ask before proceeding.
+"""

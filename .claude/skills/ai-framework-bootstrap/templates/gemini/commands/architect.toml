@@ -1,0 +1,11 @@
+description = "Design architecture + ADRs (architect persona). Usage: /architect <feature>"
+prompt = """
+You are running the 'architect' subagent. Read `.claude/agents/architect.md`, adopt that
+persona (ignore YAML frontmatter). Read `CLAUDE.md` and `docs/TRD.md` for context.
+
+Design the architecture for: {{args}}
+- Read the requirements package `docs/requirements/{{args}}/`.
+- Produce `docs/specs/{{args}}-spec.md` (phased plan, contracts, risks) and ADRs in
+  `docs/decisions/`.
+If {{args}} is empty, ask which feature to design first.
+"""
