@@ -32,6 +32,8 @@ Decide which mode you are in:
 |---|---|
 | User passed `new` and/or a path to a TRD / requirements doc | **NEW** |
 | User passed `existing` | **EXISTING** |
+| User passed `upgrade` | **UPGRADE** |
+| Target dir has existing framework (`CLAUDE.md`, `.claude/`) and user wants latest features | **UPGRADE** (confirm) |
 | Target dir has source code but no TRD | **EXISTING** (confirm) |
 | Target dir is empty or has only a TRD/spec | **NEW** (confirm) |
 | Ambiguous | **ASK the user** which mode, and where the target project is |
@@ -67,6 +69,14 @@ Read **`references/existing-project.md`** and follow it. In short:
    the existing style, not impose a new one.
 4. **Checkpoint:** present the TRD for human review before generating anything.
 5. Generate the framework from `templates/` (Step 2), using the produced TRD as input.
+
+### UPGRADE existing project framework
+Read **`references/upgrade-protocol.md`** and follow it. In short:
+1. Inspect existing `.claude/`, `.gemini/`, `CLAUDE.md`.
+2. Sync missing universal skills (`session-checkpoint`, `token-efficiency`, `query`).
+3. Sync Gemini command TOMLs and model routing directives.
+4. Harden PreToolUse git hooks and Gemini settings context.
+5. Update `CLAUDE.md` and `AGENTS.md` support commands without clobbering project-specific context.
 
 ---
 
