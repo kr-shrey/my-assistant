@@ -1,0 +1,7 @@
+description = "Save current progress to a named session checkpoint. Usage: /save-session <name> [summary]"
+model = "gemini-1.5-flash"
+prompt = """
+Save current session state. Read `.claude/skills/session-checkpoint/SKILL.md` for instructions.
+Emit the named checkpoint to `docs/sessions/{{args}}.md` using the standard schema.
+Update `docs/sessions/README.md` and report the saved checkpoint to the user.
+"""

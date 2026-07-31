@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd=\"$CLAUDE_BASH_COMMAND\"; if printf '%s' \"$cmd\" | grep -qiE 'git[[:space:]]+(commit|push|merge)|git[[:space:]]+branch[[:space:]]|checkout[[:space:]]+-b|--no-verify|push[[:space:]]+--force|push[[:space:]]+-f'; then if [ \"$ALLOW_GIT\" != \"1\" ]; then echo 'BLOCKED by GIT_SAFETY: the assistant must not commit/branch/push without explicit user approval. The user runs git themselves, or re-runs with ALLOW_GIT=1 after approving.' >&2; exit 2; fi; fi; if printf '%s' \"$cmd\" | grep -qiE 'rm[[:space:]]+-rf[[:space:]]+/|drop[[:space:]]+database|git[[:space:]]+reset[[:space:]]+--hard|git[[:space:]]+push[[:space:]]+.*--force'; then echo 'BLOCKED: potentially destructive command.' >&2; exit 2; fi; exit 0"
+            "command": "cmd=\"$CLAUDE_BASH_COMMAND\"; if printf '%s' \"$cmd\" | grep -qiE '(^|[[:space:]|;&])git([[:space:]]+-[^[:space:]]+)*[[:space:]]+(commit|push|merge|branch|checkout[[:space:]]+-b|tag)|--no-verify|push[[:space:]]+--force|push[[:space:]]+-f'; then if [ \"$ALLOW_GIT\" != \"1\" ]; then echo 'BLOCKED by GIT_SAFETY: the assistant must not commit/branch/push without explicit user approval. The user runs git themselves, or re-runs with ALLOW_GIT=1 after approving.' >&2; exit 2; fi; fi; if printf '%s' \"$cmd\" | grep -qiE 'rm[[:space:]]+-rf[[:space:]]+/|drop[[:space:]]+database|git[[:space:]]+reset[[:space:]]+--hard|git[[:space:]]+push[[:space:]]+.*--force'; then echo 'BLOCKED: potentially destructive command.' >&2; exit 2; fi; exit 0"
           }
         ]
       }
@@ -25,5 +25,6 @@
   },
   "_comment_format_hook": "Replace {{FORMAT_HOOK}} with the project's formatter invocation keyed off $file extension, e.g. case \"$file\" in *.py) ruff format \"$file\"; ruff check --fix \"$file\";; *.ts|*.tsx) npx prettier --write \"$file\";; esac",
   "_comment_git_gate": "GIT_SAFETY backstop. Blocks git commit/branch/push/merge, checkout -b, --no-verify, and force-push unless ALLOW_GIT=1. Behavioral rule in .claude/rules/git-safety.md is the primary control; this is defense-in-depth. Gemini does not run these hooks — it relies on the rule + command preambles.",
+  "_comment_model_routing": "Model routing: Agents specify model: opus (Tier 1 reasoning: analyst/architect), sonnet (Tier 2 execution: developer/tester), haiku (Tier 3 fast lookups: status/query). Integrate claude-model-router-hook under PreToolUse / SubagentStart for dynamic prompt-size or complexity routing.",
   "_comment_optional": "Optionally add a SessionStart hook to inject the latest docs/handoffs/ note, and a PreCompact hook to re-inject CLAUDE.md status. Wire these to the project's real commands."
 }

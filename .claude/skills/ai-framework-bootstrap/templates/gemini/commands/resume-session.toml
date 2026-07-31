@@ -1,0 +1,7 @@
+description = "Resume a task from a named session checkpoint. Usage: /resume-session <name>"
+model = "gemini-1.5-flash"
+prompt = """
+Resume session state from `docs/sessions/{{args}}.md`.
+Read `.claude/skills/session-checkpoint/SKILL.md` and `docs/sessions/{{args}}.md`.
+Adopt the role and pipeline stage indicated in the session file, summarize progress, and execute the next pending action immediately.
+"""

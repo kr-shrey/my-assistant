@@ -9,7 +9,7 @@ model: opus
 tools: [Read, Grep, Glob, Write, Edit]
 memory: project
 permissionMode: acceptEdits
-skills: [functional-requirements, non-functional-requirements, requirement-traceability]
+skills: [functional-requirements, non-functional-requirements, requirement-traceability, skill-lifecycle-standards, session-checkpoint, token-efficiency]
 ---
 
 # Requirements Analyst — {{PROJECT_NAME}}

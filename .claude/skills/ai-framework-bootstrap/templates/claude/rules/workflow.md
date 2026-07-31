@@ -34,6 +34,10 @@ stage.** Support commands run in the main session: `/status`, `/wrapup`.
 - Human reviews between every stage.
 - **GIT_SAFETY** (see `git-safety.md`) — no commits/branches without approval.
 - Run `/wrapup` at session end. Update `CLAUDE.md` after milestones.
+- **Lifecycle standards** (see `skill-lifecycle-standards` skill, preloaded into every agent):
+  propose new rules/limitations/skills as they're discovered instead of losing the insight;
+  deliverables never reference docs, docs reference code; code comments explain logic/strategy/
+  trade-offs where the choice isn't obvious, not just behavior.
 
 ## Cross-tool note
 Under Gemini, "run the X subagent" / `/X` means: read `.claude/agents/X.md`, adopt that

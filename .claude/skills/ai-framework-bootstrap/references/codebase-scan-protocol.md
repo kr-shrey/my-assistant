@@ -52,6 +52,13 @@ Status values: `pending` → `in-progress` → `scanned`. Only one row `in-progr
    entry points and core domain first (P0), supporting layers next (P1), peripheral/vendored
    last (P2).
 
+### Scan exclusions (noise filtering)
+To conserve token budgets and avoid context pollution, Explore subagents MUST ignore:
+- **Dependencies & Vendored Code**: `node_modules/`, `vendor/`, `.venv/`, `venv/`, `target/`, `Pods/`, `.gradle/`.
+- **Build Artifacts & Generated Code**: `dist/`, `build/`, `out/`, `.next/`, `coverage/`, `*.min.js`, `*.pyc`.
+- **Large Lockfiles**: `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `poetry.lock`, `Cargo.lock` (inspect manifest files like `package.json` or `pyproject.toml` instead).
+- **VCS Metadata**: `.git/`, `.svn/`.
+
 ### Scan one area
 1. Flip its row to `in-progress`.
 2. Read it with intent — for a large area, **delegate to an Explore subagent** with a focused

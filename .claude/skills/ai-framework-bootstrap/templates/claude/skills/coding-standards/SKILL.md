@@ -21,6 +21,10 @@ description: >
 
 ## Docstrings / comments
 {{CONV_DOCS}}  <!-- public-API doc style; comments explain WHY not WHAT; TODO(author): format -->
+See `skill-lifecycle-standards` for the added bar on non-obvious choices: logic, strategy
+rationale, and alternatives/trade-offs — not just why, when the choice isn't obvious from the
+code alone. Never reference doc files (specs/ADRs/tasks) from code comments — see that skill's
+doc↔code direction rule.
 
 ## Defensive coding
 {{CONV_DEFENSIVE}}  <!-- guard clauses, no deep nesting, immutability defaults, enums over magic values -->

@@ -71,10 +71,18 @@ it" (Gemini reads skill files on request; this repo can also expose it as a Gemi
     codebase-scan-protocol.md
     trd-template.md
     framework-blueprint.md
+    placeholders.md        # master dictionary of template placeholders
     cross-tool-compat.md
   templates/              # skeletons the skill copies + fills per project
     shared/   claude/   gemini/
 ```
+
+## Core Features
+
+- **100% Zero-Dependency & Language-Agnostic**: Pure markdown meta-skill runnable in any AI environment (Claude, Gemini, Antigravity, Cursor) without host runtime dependencies.
+- **Resumable Codebase Scanning**: Built-in scan ledger to map large brownfield repositories across sessions.
+- **Named Session Checkpointing (`/save-session`, `/resume-session`)**: Save active pipeline context into `docs/sessions/<name>.md` to resume cleanly across token resets or multi-session workflows.
+- **Defense-in-Depth Git Safety**: 7-point verification and bash pre-tool hook gate preventing automated commits, pushes, or branching.
 
 ## Status
 

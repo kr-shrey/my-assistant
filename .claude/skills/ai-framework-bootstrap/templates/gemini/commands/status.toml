@@ -1,7 +1,5 @@
-description = "Task dashboard. Usage: /status"
+description = "Pipeline status summary. Usage: /status"
+model = "gemini-1.5-flash"
 prompt = """
-Do not delegate. Scan `docs/tasks/**/*.md`, read each file's frontmatter (status, priority,
-depends-on), and print a compact dashboard grouped by status. Within 'todo', surface tasks
-whose dependencies are all 'done', ordered by priority. Recommend the next task to pick up.
-This is read-only — never modify files or run git.
+Scan docs/requirements/, docs/specs/, docs/tasks/, docs/decisions/, docs/handoffs/, docs/sessions/ and report pipeline status cleanly. Follow `.claude/skills/token-efficiency/SKILL.md` for token-dense summary output.
 """

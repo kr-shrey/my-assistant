@@ -8,7 +8,7 @@ model: sonnet
 tools: [Read, Bash, Grep, Glob]
 memory: project
 permissionMode: plan
-skills: [test-strategy, git-conventions]
+skills: [test-strategy, git-conventions, skill-lifecycle-standards, session-checkpoint, token-efficiency]
 ---
 
 # Tester — Test Execution & Reporting — {{PROJECT_NAME}}

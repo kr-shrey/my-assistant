@@ -40,7 +40,7 @@ This project's canonical context lives in CLAUDE.md and .claude/. Read these fir
 @./.claude/rules/git-safety.md
 
 ## How to work here
-- Slash commands: see .gemini/commands/ (analyze, architect, plan, implement, test, status, wrapup).
+- Slash commands: see .gemini/commands/ (analyze, architect, plan, implement, test, status, wrapup, save-session, resume-session).
 - Subagents are emulated: a command will ask you to read .claude/agents/<role>.md and adopt that persona.
 - Before editing files, scan .claude/rules/ and obey any rule whose paths match the target.
 - Before writing code, read the relevant .claude/skills/<name>/SKILL.md (conventions live there).
@@ -80,7 +80,7 @@ Produce the requirements package under docs/requirements/{{args}}/ as the person
 ### .gemini/settings.json
 ```json
 {
-  "context": { "fileName": ["GEMINI.md", "CLAUDE.md", "AGENTS.md"] }
+  "context": { "fileName": ["GEMINI.md", "AGENTS.md"] }
 }
 ```
 (Listing CLAUDE.md and AGENTS.md as context filenames is belt-and-suspenders alongside the

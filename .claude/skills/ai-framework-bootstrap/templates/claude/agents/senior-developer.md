@@ -8,7 +8,7 @@ model: sonnet
 tools: [Read, Grep, Glob, Write, Edit]
 memory: project
 permissionMode: acceptEdits
-skills: [task-breakdown, task-format]
+skills: [task-breakdown, task-format, skill-lifecycle-standards, session-checkpoint, token-efficiency]
 ---
 
 # Senior Developer — Task Breakdown — {{PROJECT_NAME}}

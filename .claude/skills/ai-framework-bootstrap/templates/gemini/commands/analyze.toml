@@ -1,8 +1,9 @@
 description = "Analyze requirements (analyst persona). Usage: /analyze <domain>"
+model = "gemini-1.5-pro"
 prompt = """
 You are running the 'analyst' subagent. Read `.claude/agents/analyst.md`, adopt that persona
 and its procedure (ignore its YAML frontmatter — Claude metadata). Read `CLAUDE.md` for project
-context if you haven't this session.
+context if you haven't this session. Also follow `.claude/skills/token-efficiency/SKILL.md`.
 
 Analyze requirements for the domain: {{args}}
 - If `docs/requirements/{{args}}/` exists, review and extend it — do not overwrite.

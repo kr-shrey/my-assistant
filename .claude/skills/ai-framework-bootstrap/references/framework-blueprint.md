@@ -16,23 +16,27 @@ AGENTS.md                         # universal bridge (Gemini/Cursor/Antigravity 
     (optional) auditor.md  status-reader.md
   skills/
     analyze/SKILL.md  architect/SKILL.md  plan/SKILL.md  implement/SKILL.md  test/SKILL.md
-    status/SKILL.md   wrapup/SKILL.md
+    status/SKILL.md   wrapup/SKILL.md     save-session/SKILL.md  resume-session/SKILL.md
     git-conventions/SKILL.md      # opens with GIT_SAFETY
-    <stack>-conventions/SKILL.md  # e.g. python-conventions, ts-conventions
+    <stack>-conventions/SKILL.md  # e.g. python-conventions, ts-conventions (multiple if polyglot)
     task-format/SKILL.md  test-strategy/SKILL.md  (api-conventions/SKILL.md if API)
+    skill-lifecycle-standards/SKILL.md  # always generated, not stack-dependent
+    session-checkpoint/SKILL.md        # session state saving & resumption across token resets
   rules/
     git-safety.md                 # GIT_SAFETY, paths: '**'
     workflow.md                   # pipeline summary, paths: '**'
   settings.json                   # hooks: PostToolUse formatter, PreToolUse git gate + test gate
 
 .gemini/
-  settings.json                   # context.fileName, etc.
+  settings.json                   # context.fileName: ["GEMINI.md", "AGENTS.md"]
   commands/
     analyze.toml  architect.toml  plan.toml  implement.toml  test.toml  status.toml  wrapup.toml
+    save-session.toml  resume-session.toml
 
 docs/
   TRD.md
   requirements/README.md  specs/README.md  tasks/README.md  decisions/README.md  handoffs/README.md
+  sessions/README.md
 ```
 
 ## Derivation rules (how stack details flow in)
@@ -51,14 +55,14 @@ docs/
 ### Roster ↔ preloaded skills
 | Agent | model | skills |
 |---|---|---|
-| analyst | opus | functional-requirements, non-functional-requirements, requirement-traceability |
-| architect | opus | technical-spec, api-conventions (if API), adr-writing |
-| senior-developer | sonnet | task-breakdown, task-format |
-| developer | sonnet | task-format, `<stack>-conventions`, api-conventions (if API), git-conventions |
-| tester | sonnet | test-strategy, git-conventions |
+| analyst | opus | functional-requirements, non-functional-requirements, requirement-traceability, skill-lifecycle-standards, session-checkpoint |
+| architect | opus | technical-spec, api-conventions (if API), adr-writing, skill-lifecycle-standards, session-checkpoint |
+| senior-developer | sonnet | task-breakdown, task-format, skill-lifecycle-standards, session-checkpoint |
+| developer | sonnet | task-format, `<stack>-conventions`, api-conventions (if API), git-conventions, skill-lifecycle-standards, session-checkpoint |
+| tester | sonnet | test-strategy, git-conventions, skill-lifecycle-standards, session-checkpoint |
 
 (If a listed skill isn't being generated for this project, drop it from the frontmatter — no
-dangling skill references.)
+dangling skill references. `skill-lifecycle-standards` and `session-checkpoint` are universal exceptions: they are never stack- or API-conditional, so every agent always gets them.)
 
 ## Filling rules
 

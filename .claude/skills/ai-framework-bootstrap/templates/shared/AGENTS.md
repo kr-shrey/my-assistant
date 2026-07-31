@@ -23,9 +23,10 @@ Gemini ingests `GEMINI.md` (which `@import`s `CLAUDE.md`) and recognizes this `A
 - **Role adoption:** asked to "run the architect subagent" / via `/architect`, Gemini MUST
   first read `.claude/agents/architect.md` and adopt that persona and steps (ignore its YAML
   frontmatter — Claude metadata).
-- **Commands:** for `/analyze`, `/implement`, etc., read the matching
+- **Commands:** for `/analyze`, `/implement`, `/query`, `/save-session`, `/resume-session`, etc., read the matching
   `.gemini/commands/<cmd>.toml` (or the `.claude/skills/<cmd>/SKILL.md` it mirrors) and follow
   it.
+- **Token Efficiency:** obey `.claude/skills/token-efficiency/SKILL.md` — use `code-review-graph` or `codebase-memory-mcp` before doing full scans.
 - **Rules:** before editing files, scan `.claude/rules/` and obey any rule whose `paths:`
   match the targets — always including `git-safety.md`.
 - **Hooks:** Gemini does not auto-run `.claude/settings.json` hooks. After editing code, run

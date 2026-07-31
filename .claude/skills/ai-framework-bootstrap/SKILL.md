@@ -72,7 +72,8 @@ Read **`references/existing-project.md`** and follow it. In short:
 
 ## Step 2 — Generate the framework
 
-Read **`references/framework-blueprint.md`** (the full inventory + derivation rules) and
+Read **`references/framework-blueprint.md`** (the full inventory + derivation rules),
+**`references/placeholders.md`** (master variable schema), and
 **`references/cross-tool-compat.md`** (how each file maps across Claude / Gemini / AGENTS.md).
 Then emit, into the target root, the files described there by copying the matching
 `templates/` skeleton and filling every `{{PLACEHOLDER}}` with project specifics:
@@ -81,12 +82,19 @@ Then emit, into the target root, the files described there by copying the matchi
 - `.claude/agents/*.md`, `.claude/skills/<name>/SKILL.md`, `.claude/rules/*.md`,
   `.claude/settings.json`
 - `.gemini/settings.json`, `.gemini/commands/*.toml`
-- `docs/{requirements,specs,tasks,decisions,handoffs}/` skeleton + `docs/TRD.md`
+- `docs/{requirements,specs,tasks,decisions,handoffs,sessions}/` skeleton + `docs/TRD.md`
 
 Mandatory in every generated project (do not skip): the **GIT_SAFETY** rule, threaded through
 `CLAUDE.md`, `.claude/rules/git-safety.md`, the `git-conventions` skill, the developer/tester
 personas, `GEMINI.md`, the dev-capable `.gemini/commands/*.toml` preambles, and the
 `.claude/settings.json` PreToolUse git gate.
+
+Also mandatory, and equally non-conditional on stack/API:
+1. `.claude/skills/skill-lifecycle-standards/SKILL.md` (continuous improvement, doc→code direction, code doc depth).
+2. `.claude/skills/session-checkpoint/SKILL.md` (saving & resuming named session checkpoints via `/save-session` and `/resume-session` across token resets).
+3. `.claude/skills/token-efficiency/SKILL.md` (graph-first context retrieval via `code-review-graph` / `codebase-memory-mcp`, instant `/query`, and caveman token-dense output).
+
+Preload all three into **every** generated agent's `skills:` frontmatter (see `references/framework-blueprint.md` § Roster ↔ preloaded skills). Do not drop them to save tokens.
 
 ---
 

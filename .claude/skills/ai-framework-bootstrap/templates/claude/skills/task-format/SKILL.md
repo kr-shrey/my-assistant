@@ -29,6 +29,9 @@ updated: YYYY-MM-DD
 5. **Technical Notes** — hints, gotchas.
 6. **Verification** — exact commands to confirm done.
 7. **Implementation Notes** — filled by the developer at completion (files, decisions, issues).
+   This is the doc→code pointer (see `skill-lifecycle-standards`): the code itself carries no
+   reference back to this task or the spec. If this task touches a file/module an existing
+   doc already points to, refresh that pointer here instead of leaving it stale.
 
 ## Status lifecycle
 `todo` → (developer) `in-progress` → `review` → (tester + human-approved commit) `done`.

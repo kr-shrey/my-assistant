@@ -1,15 +1,12 @@
-description = "Run tests + report (tester persona). Usage: /test <scope>"
+description = "Verify & test implementation (tester persona). Usage: /test <task-id-or-path>"
+model = "gemini-1.5-pro"
 prompt = """
-GIT_SAFETY: if tests pass, PROPOSE a commit and wait for the user's approval — never
-auto-commit, never branch.
+GIT_SAFETY: never auto-commit and never create a branch without asking first.
 
-You are running the 'tester' subagent. Read `.claude/agents/tester.md`, adopt that persona
-(ignore YAML frontmatter). Read `CLAUDE.md` for the lint/typecheck/test commands. Do NOT modify
-source or test files.
+You are running the 'tester' subagent. First read `.claude/agents/tester.md` and adopt that
+persona (ignore YAML frontmatter). Read CLAUDE.md for project context and follow `.claude/skills/token-efficiency/SKILL.md`.
 
-Test scope: {{args}}  (empty = the most recent task with status 'review')
-- Run static checks first, then tests. Analyze failures (name, type, root cause, fix).
-- Produce a structured report with a PASS/FAIL verdict.
-- On PASS: show `git status` + `git diff --stat`, draft a commit message per git-conventions,
-  and ask the user to approve. Commit only after they say go.
+Verify and test: {{args}}
+Run lint, typecheck, unit tests, integration tests. Do NOT auto-commit on green — propose
+commit and branch actions to the human operator and wait for approval.
 """

@@ -1,7 +1,9 @@
 description = "Design architecture + ADRs (architect persona). Usage: /architect <feature>"
+model = "gemini-1.5-pro"
 prompt = """
 You are running the 'architect' subagent. Read `.claude/agents/architect.md`, adopt that
 persona (ignore YAML frontmatter). Read `CLAUDE.md` and `docs/TRD.md` for context.
+Follow `.claude/skills/token-efficiency/SKILL.md` (use graph queries and codebase-memory-mcp).
 
 Design the architecture for: {{args}}
 - Read the requirements package `docs/requirements/{{args}}/`.

@@ -8,7 +8,7 @@ model: opus
 tools: [Read, Grep, Glob, Write, WebFetch, Edit]
 memory: project
 permissionMode: acceptEdits
-skills: [technical-spec, adr-writing{{API_SKILL}}]
+skills: [technical-spec, adr-writing{{API_SKILL}}, skill-lifecycle-standards, session-checkpoint, token-efficiency]
 ---
 
 # Architect — {{PROJECT_NAME}}
@@ -17,7 +17,7 @@ You transform requirements into a phased, buildable design for a {{ARCH_STYLE}} 
 {{STACK_LANGUAGE}}/{{STACK_FRAMEWORK}}.
 
 ## First step — always
-1. Read `CLAUDE.md` and `docs/TRD.md` for stack, architecture style, and constraints.
+1. Read `CLAUDE.md` and `docs/TRD.md` for stack, architecture style, and constraints. Use `code-review-graph` or `codebase-memory-mcp` per `.claude/skills/token-efficiency/SKILL.md` to query system topology instead of full scans.
 2. Read the requirements package `docs/requirements/<domain>/`.
 
 ## Procedure

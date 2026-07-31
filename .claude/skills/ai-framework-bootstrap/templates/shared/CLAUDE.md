@@ -40,14 +40,22 @@ This project is driven by a five-stage pipeline. Full description in
 ```
 
 Main session orchestrates; each stage is a subagent; **a human reviews and approves between
-every stage.** Support commands: `/status`, `/wrapup`.
+every stage.** Support commands: `/status`, `/wrapup`, `/query`, `/save-session`, `/resume-session`.
+
+## Token Efficiency & AI Readiness
+
+- **Graph-First Context Retrieval**: Use `code-review-graph` or `codebase-memory-mcp` per `.claude/skills/token-efficiency/SKILL.md` before doing full file scans.
+- **Model Routing Strategy**: Tasks are routed by model tiers:
+  - **Tier 1 (High Reasoning / Opus & Gemini Pro)**: `/analyze`, `/architect`, `/plan`
+  - **Tier 2 (Execution / Sonnet & Gemini Pro/Thinking)**: `/implement`, `/test`
+  - **Tier 3 (Fast Lookups / Haiku & Gemini Flash)**: `/query`, `/status`, `/wrapup`, `/save-session`, `/resume-session`
 
 ## Requirements Documentation
 
 - Requirements live in `docs/requirements/<domain>/` — one self-contained package per domain
   (`clarification.md`, `functional-reqs.md`, `nonfunctional-reqs.md`, `traceability.md`).
 - Specs in `docs/specs/`, tasks in `docs/tasks/<domain>/`, ADRs in `docs/decisions/`,
-  session handoffs in `docs/handoffs/`.
+  session handoffs in `docs/handoffs/`, named session checkpoints in `docs/sessions/`.
 
 ## Domain glossary
 

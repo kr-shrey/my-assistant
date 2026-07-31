@@ -11,21 +11,27 @@ thin or ambiguous on any of the extraction fields below, **ask the user** rather
 
 ## 2. Extract the project profile
 
-Pull these into a short working profile (you will feed it into every `{{PLACEHOLDER}}`):
+Pull these into a short working profile (you will feed it into every `{{PLACEHOLDER}}` tag across `templates/`). See **`placeholders.md`** for the full consumer mapping and default fallback values:
 
 | Field | Placeholder | Notes |
 |---|---|---|
-| Project name / one-line purpose | `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}` | |
-| Primary language(s) | `{{STACK_LANGUAGE}}` | drives convention-skill choice |
+| Project name / one-line purpose | `{{PROJECT_NAME}}`, `{{PROJECT_PURPOSE}}` | Drives title and header context |
+| Primary language(s) | `{{STACK_LANGUAGE}}` | Drives convention-skill choice |
 | Frameworks / runtime | `{{STACK_FRAMEWORK}}` | e.g. FastAPI, Spring, Next.js, Go stdlib |
+| Datastores & messaging | `{{STACK_DATA}}` | e.g. PostgreSQL, Redis, Kafka |
 | Architecture style | `{{ARCH_STYLE}}` | layered, hexagonal, microservices, CLI, library |
-| Build command | `{{CMD_BUILD}}` | |
-| Test command | `{{CMD_TEST}}` | |
-| Lint command | `{{CMD_LINT}}` | |
-| Format command | `{{CMD_FORMAT}}` | drives the PostToolUse formatter hook |
-| Type-check command | `{{CMD_TYPECHECK}}` | optional |
-| Domain glossary | `{{GLOSSARY}}` | key terms for CLAUDE.md |
-| NFRs | `{{NFR_SUMMARY}}` | performance/security/scale targets |
+| High-level module map | `{{MODULE_MAP}}` | Package/component summary |
+| Entry points | `{{ENTRY_POINTS}}` | Main executables / router paths |
+| Build command | `{{CMD_BUILD}}` | Build / compile command |
+| Test command | `{{CMD_TEST}}` | Main test runner command |
+| Lint command | `{{CMD_LINT}}` | Linter command |
+| Format command | `{{CMD_FORMAT}}` | Drives the PostToolUse formatter hook |
+| Type-check command | `{{CMD_TYPECHECK}}` | Type checker command (or N/A) |
+| Stack conventions skill name | `{{STACK_CONVENTIONS_SKILL}}` | e.g. `python-conventions`, `ts-conventions` |
+| Domain glossary | `{{GLOSSARY}}` | Key terms for `CLAUDE.md` |
+| NFRs | `{{NFR_SUMMARY}}` | Performance, security, scalability targets |
+| Critical non-negotiables | `{{OTHER_NON_NEGOTIABLES}}` | Security/PII rules, invariant policies |
+| Formatter hook script logic | `{{FORMAT_HOOK}}` | Shell case logic per file extension |
 
 ## 3. Choose the roster and the convention skills
 
@@ -39,7 +45,7 @@ Pull these into a short working profile (you will feed it into every `{{PLACEHOL
   - Java/Kotlin → `jvm-conventions`
   - …otherwise create a `coding-standards` skill seeded from the TRD's stated standards.
 - Always include: `git-conventions` (with GIT_SAFETY), `task-format`, `test-strategy`,
-  and an `api-conventions` skill if the project exposes an API.
+  `skill-lifecycle-standards`, and an `api-conventions` skill if the project exposes an API.
 
 Record the chosen roster + skills — `framework-blueprint.md` maps roster → which agent files
 and which `skills:` frontmatter entries to emit.

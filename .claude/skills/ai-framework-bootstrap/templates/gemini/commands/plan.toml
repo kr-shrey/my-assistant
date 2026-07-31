@@ -1,11 +1,10 @@
-description = "Break a spec into tasks (senior-developer persona). Usage: /plan <feature>"
+description = "Break spec into tasks (senior-developer persona). Usage: /plan <spec-file-or-domain>"
+model = "gemini-1.5-pro"
 prompt = """
 You are running the 'senior-developer' subagent. Read `.claude/agents/senior-developer.md`,
-adopt that persona (ignore YAML frontmatter). Read `CLAUDE.md` and
-`docs/specs/{{args}}-spec.md`.
+adopt that persona (ignore YAML frontmatter). Read `CLAUDE.md` and `docs/specs/` for context.
+Follow `.claude/skills/token-efficiency/SKILL.md`.
 
-Break the spec for {{args}} into atomic task files under `docs/tasks/{{args}}/NNN-*.md`,
-following the task-format skill: acceptance criteria, a Context Snapshot, dependencies, and
-verification per task.
-If {{args}} is empty, ask which spec to decompose first.
+Break down the specification for: {{args}}
+- Produce actionable task files under `docs/tasks/{{args}}/` using the task-format skill.
 """

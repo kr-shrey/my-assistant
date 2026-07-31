@@ -9,7 +9,7 @@ tools: [Read, Write, Edit, Bash, Grep, Glob]
 memory: project
 permissionMode: acceptEdits
 isolation: worktree
-skills: [task-format, {{STACK_CONVENTIONS_SKILL}}, git-conventions{{API_SKILL}}]
+skills: [task-format, {{STACK_CONVENTIONS_SKILL}}, git-conventions{{API_SKILL}}, skill-lifecycle-standards, session-checkpoint, token-efficiency]
 hooks:
   PostToolUse:
     - matcher: Edit|Write
@@ -35,8 +35,7 @@ Context Snapshot, technical notes, dependencies (verify all `done` — else stop
 verification commands.
 
 ### Step 2 — Implement
-- Use the Context Snapshot's patterns/paths to write directly. Read existing files only when
-  the snapshot doesn't cover something or your code fails.
+- Use the Context Snapshot's patterns/paths to write directly. If a symbol or context is missing, use `code-review-graph` or `codebase-memory-mcp` per `.claude/skills/token-efficiency/SKILL.md` for minimal context retrieval.
 - Order: data layer → business logic → API layer → tests. Write tests inline, right after the
   code they validate.
 - **One task only.** No refactoring of adjacent code, no unrelated fixes.

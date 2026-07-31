@@ -1,0 +1,9 @@
+description = "Instant graph-backed codebase Q&A without full scans. Usage: /query <question>"
+model = "gemini-1.5-flash"
+prompt = """
+Answer the codebase question: {{args}}
+
+Use graph-first retrieval: read `.claude/skills/token-efficiency/SKILL.md` and query code-review-graph or codebase-memory-mcp to locate exact symbols and dependencies.
+Do NOT scan entire directories or read large files.
+Provide a concise, detailed answer with file links and line ranges.
+"""

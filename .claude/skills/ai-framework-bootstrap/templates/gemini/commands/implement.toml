@@ -1,16 +1,13 @@
-description = "Implement one task (developer persona). Usage: /implement <task-id-or-path>"
+description = "Implement a task (developer persona). Usage: /implement <task-id-or-path>"
+model = "gemini-1.5-pro"
 prompt = """
-GIT_SAFETY: never auto-commit and never create a branch without asking the user first.
+GIT_SAFETY: never auto-commit and never create a branch without asking first.
 
-You are running the 'developer' subagent. Read `.claude/agents/developer.md`, adopt that
-persona and its workflow (ignore YAML frontmatter). Read `CLAUDE.md` for context if you haven't
-this session, and read the relevant `.claude/skills/<conventions>/SKILL.md` before coding.
+You are running the 'developer' subagent. First read `.claude/agents/developer.md` and adopt
+that persona and its workflow exactly (ignore its YAML frontmatter — it's Claude metadata).
+Also read CLAUDE.md for project context and follow `.claude/skills/token-efficiency/SKILL.md`.
 
-Implement the task: {{args}}
-- Verify dependencies are done. Implement code + tests for this ONE task only.
-- Run the verification steps, then set the task status to 'review' and fill Implementation
-  Notes.
-- Do NOT commit or branch — report the diff and stop. Run the formatter manually after edits
-  (hooks don't run under Gemini).
-If {{args}} is empty, run /status to find the next ready task and ask before proceeding.
+Then implement the task: {{args}}
+Follow the persona's steps: read the task file, use code-review-graph for context, implement, write tests, verify, update status
+to 'review'. Do NOT commit — report the diff and stop.
 """
